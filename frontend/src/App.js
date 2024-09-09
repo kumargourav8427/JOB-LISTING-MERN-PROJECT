@@ -1,26 +1,27 @@
-import Navbar from "./layouts/Navbar";
-import Home from "./Pages/Home";
-import Blogs from "./Pages/Blogs";
-import Contact from "./Pages/Contact";
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import JobListing from "./Pages/JobListing";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Signup from './Signup';
+import Login from './Login';
+import './Auth.css';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <BrowserRouter>
+    <Router>
+      <div className="app">
+        <nav>
+          <ul>
+            <li><Link to="/signup">Signup</Link></li>
+            <li><Link to="/login">Login</Link></li>
+          </ul>
+        </nav>
         <Routes>
-          <Route path="/" element={<Navbar />}>
-            <Route index element={<Home />} />
-            <Route path="/job-listing" element={<JobListing />} />
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/contact" element={<Contact />} />
-          </Route>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<h1>Welcome to Auth App</h1>} />
         </Routes>
-      </BrowserRouter>
-
-    </>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
