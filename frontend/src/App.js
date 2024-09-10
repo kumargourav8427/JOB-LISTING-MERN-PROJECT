@@ -1,25 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Signup from './Signup';
 import Login from './Login';
 import './Auth.css';
+import Navbar from './layouts/Navbar'
+import Home from './Pages/Home'
+import Job from './Pages/Job';
+import Contact from './Pages/Contact';
 
 const App = () => {
   return (
     <Router>
-      <div className="app">
-        <nav>
-          <ul>
-            <li><Link to="/signup">Signup</Link></li>
-            <li><Link to="/login">Login</Link></li>
-          </ul>
-        </nav>
-        <Routes>
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<h1>Welcome to Auth App</h1>} />
-        </Routes>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/job" element={<Job />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </Router>
   );
 };
