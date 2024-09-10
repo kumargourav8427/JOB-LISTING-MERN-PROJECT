@@ -26,7 +26,7 @@ function Navbar() {
             <Link to="/signup" className='cursor-pointer hover:font-bold'>Signup</Link>
           </li>
           <li>
-            <img src={userIcon} alt='userIcon' />
+            <img src={userIcon} alt='userIcon' width={30} className='bg-white rounded-lg'/>
           </li>
         </ul>
       </div>
