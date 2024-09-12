@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import userIcon from '../assets/user.png'
+import './navbar.css'
 
 function Navbar() {
   return (
@@ -26,8 +27,18 @@ function Navbar() {
             <Link to="/signup" className='cursor-pointer hover:font-bold'>Signup</Link>
           </li>
           <li>
-            <img src={userIcon} alt='userIcon' width={30} className='bg-white rounded-lg'/>
+            <div class="dropdown">
+              <button className='dropIcon'>
+                <img src={userIcon} alt='userIcon' width={30} className='bg-white rounded-lg ' />
+              </button>
+              <div class="dropdown-content rounded-sm">
+                <a href="#">View Profile</a>
+                <a href="#">Logout</a>
+              </div>
+            </div>
           </li>
+
+
         </ul>
       </div>
     </nav>
