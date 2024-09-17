@@ -1,7 +1,7 @@
 import React from 'react'
-import ItemsContain from './ItemsContain.js'
-import Social from './Social.js'
-import { Icons } from './Menu.js'
+import ItemsContain from '../component/ItemsContain'
+import Social from '../component/Social.js'
+// import { Icons } from './Menu.js'
 
 function Footer() {
   return (
@@ -18,7 +18,9 @@ function Footer() {
         </div>
       </div>
       <ItemsContain/>
-      <Social Icon={Icons}/>
+      <Social 
+      // Icon={Icons}
+      />
     </footer>
   )
 }
