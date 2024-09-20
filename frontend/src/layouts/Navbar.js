@@ -2,14 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import userIcon from '../assets/user.png'
 import './navbar.css'
-
-
 function Navbar() {
   return (
-
     <nav className=" bg-black text-white">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2 h-16">
-       
+
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt=" Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FindJobs</span>
@@ -36,14 +33,14 @@ function Navbar() {
           </ul>
         </div>
         <div className="items-center space-x-3 md:space-x-0 ">
-            <div className="dropdown">
-              <button classNameName='dropIcon'>
-                <img src={userIcon} alt='userIcon' width={30} classNameName=' rounded-lg ' />
-              </button>
-              <div className="dropdown-content rounded-sm">
-                <Link to="/profile">View Profile</Link>
-                <Link to="#">Logout</Link>
-              </div>
+          <div className="dropdown">
+            <button classNameName='dropIcon'>
+              <img src={userIcon} alt='userIcon' width={30} classNameName=' rounded-lg ' />
+            </button>
+            <div className="dropdown-content rounded-sm">
+              <Link to="/profile">View Profile</Link>
+              <Link to="#">Logout</Link>
+            </div>
           </div>
         </div>
 
