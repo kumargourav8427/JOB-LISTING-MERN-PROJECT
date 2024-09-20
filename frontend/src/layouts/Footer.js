@@ -1,12 +1,20 @@
 import React from 'react'
+import ItemsContain from '../component/ItemsContain'
+import Social from '../component/Social.js'
 // import { Icons } from './Menu.js'
 
 function Footer() {
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <footer className='bg-slate-900 text-white'>
       <div className="md:flex md:justify-between md:items-center sm:px=12 px-4 bg-[#703eb0] py-7">
         <h1 className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
+=======
+    <footer className='bg-slate-900 text-white'>
+      <div className="md:flex md:justify-between md:items-center sm:px=12 px-4 bg-[#703eb0] py-7">
+        <h1 className="lg: text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
+>>>>>>> 953b6f40dd3f3ae3b79a09bd2500ad13649b88df
           <span className="text-red-500">Contact</span> Us 
         </h1>
         <div>
@@ -14,6 +22,7 @@ function Footer() {
                  placeholder="Enter your phone number"
                  className="text-grey-800 sm:w-72 w-full sm:mr-5 mr-1 lg:mb-0 mb-4 py-2.5 rounded px-2 focus:outline-none"/>
             <button className="bg-red-500 hover:bg-red-700 duration-300 text-white text-lg font-bold font-mono px-5 py-2.5 rounded-md md:w-auto w-full">Send</button>
+<<<<<<< HEAD
 =======
     <footer className="footer footer-center bg-base-200 text-base-content rounded p-10">
       <nav className="grid grid-flow-col gap-4">
@@ -57,11 +66,14 @@ function Footer() {
             </svg>
           </a>
 >>>>>>> 87da3004a77582900df2e2fecb7ff8b42bb0e43a
+=======
+>>>>>>> 953b6f40dd3f3ae3b79a09bd2500ad13649b88df
         </div>
-      </nav>
-      <aside>
-        <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
-      </aside>
+      </div>
+      <ItemsContain/>
+      <Social 
+      // Icon={Icons}
+      />
     </footer>
   )
 }
