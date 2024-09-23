@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (username, password) => {
-    const fakeUser = { username, role: 'employer' };
+    const fakeUser = { username, role: 'recruiter' };
     setUser(fakeUser);
   };
 

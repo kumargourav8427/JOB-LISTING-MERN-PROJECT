@@ -9,9 +9,10 @@ import Job from './Pages/Job';
 import Contact from './Pages/Contact';
 import Profile from './component/Profile'
 import JobList from './admin/JobList';
-import AddJob from './admin/AddJob';
+import Company from './admin/Company';
 import { JobProvider } from './ContextApi/JobContext';
 import { AuthProvider } from './ContextApi/AuthContext';
+import CreateJob from './admin/CreateJob';
 
 
 
@@ -29,8 +30,9 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/addjob" element={<AddJob /> } />
-              <Route path="/joblist" element={<JobList />} />
+              <Route path="/admin/company" element={<Company /> } />
+              <Route path="/admin/company/create" element={<CreateJob /> } />
+              <Route path="/admin/addjob" element={<JobList />} />
             </Routes>
             <Footer />
           </Router >

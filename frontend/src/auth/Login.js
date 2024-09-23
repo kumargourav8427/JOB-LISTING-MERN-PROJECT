@@ -5,9 +5,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { USER_API_END_POINT } from "../apiAddress/constant";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading, setUser } from "../redux/authSlice";
+import { Vortex } from 'react-loader-spinner'
 
-import { useContext } from "react";
-import { AuthContext } from "../ContextApi/AuthContext";
+
 
 const Login = () => {
   const [loginInput, setLoginInput] = useState({
@@ -15,14 +17,54 @@ const Login = () => {
     password: "",
     role: "",
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading } = useSelector(store => store.auth)
+
+
+
 
   const changeEventHandler = (e) => {
     setLoginInput({ ...loginInput, [e.target.name]: e.target.value });
   };
+  // Validation function
+  const validateLogin = () => {
+    const { email, password, role } = loginInput;
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email) {
+      toast.error("Email is required");
+      return false;
+    } else if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email");
+      return false;
+    }
+
+    if (!password) {
+      toast.error("Password is required");
+      return false;
+    } else if (password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return false;
+    }
+
+    if (!role) {
+      toast.error("Please select a role");
+      return false;
+    }
+
+    return true;
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!validateLogin()) return;
+
+    dispatch(setLoading(true))
     try {
       const res = await axios.post(`${USER_API_END_POINT}/login`, loginInput, {
         headers: { "Content-Type": "application/json" },
@@ -31,9 +73,11 @@ const Login = () => {
       console.log(res.data.success, "login");
 
       if (res.data.success) {
+        dispatch(setUser(res.data.user))
+        navigate("/");
         toast('🦄Login Succefully', {
           position: "bottom-right",
-          autoClose: 5000,
+          autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -41,41 +85,26 @@ const Login = () => {
           progress: undefined,
           theme: "dark",
         });
-        setTimeout(() => {
-          navigate("/");
-        }, 3000)
+
       }
 
     } catch (error) {
-      console.log(error);
+      toast.error("Login failed. Please check your credentials.");
+      console.error(error);
+    }
+    finally {
+      dispatch(setLoading(false))
     }
 
     // console.log('Login:', { email, password });
     console.log(loginInput, "login data");
   };
 
-  const navigate = useNavigate();
 
-  const { login } = useContext(AuthContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const handleLogin = () => {
-    // login(username, password);
-    toast('🦄 Login Succefully', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
   return (
     <>
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -147,9 +176,17 @@ const Login = () => {
                 </label>
               </div>
             </div>
-            <button type="submit" className="mb-3">
-              Login
-            </button>
+
+            {
+              loading ? <button className="w-full h-10 flex justify-center items-center gap-3"><Vortex
+                visible={true}
+                height="40"
+                width="40"
+                colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+              />Please Wait!</button> : <button type="submit" className="mb-3">
+                Login
+              </button>
+            }
             <p className="text-red-800 text-center">
               Don't have an account{" "}
               <Link to="/signup" className="text-blue-900">
@@ -159,7 +196,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <div>
+      {/* <div>
         <h2>Login</h2>
         <input
           type="text"
@@ -174,7 +211,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleLogin}>Login</button>
-      </div>
+      </div> */}
     </>
   );
 };
